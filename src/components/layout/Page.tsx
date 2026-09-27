@@ -18,6 +18,8 @@ type PageProps = {
  * One "page" of the issue. Each opens with a running head — publication name,
  * section, folio — framed by the hairline rules that bracket every page of
  * the deck. Colour theme is set per page so nested components inherit it.
+ * Every page after the cover is a sheet laid over the previous one: rounded
+ * top corners that flatten as it arrives (see Sheets.tsx).
  */
 export function Page({ id, num, label, theme, children, className, bare, labelledBy }: PageProps) {
   return (
@@ -26,6 +28,7 @@ export function Page({ id, num, label, theme, children, className, bare, labelle
       data-page={id}
       data-theme={theme}
       aria-labelledby={labelledBy ?? `${id}-title`}
+      data-sheet={bare ? undefined : ""}
       className={`${styles.page} ${className ?? ""}`}
     >
       {bare ? null : (

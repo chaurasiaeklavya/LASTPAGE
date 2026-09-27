@@ -26,6 +26,10 @@
 .bar[data-hidden="true"] {
   transform: translateY(-110%);
 }
+/* Never hide controls from keyboard users. */
+.bar:focus-within {
+  transform: none;
+}
 
 /* Glass appears only once content scrolls beneath the bar. */
 .bar::before {

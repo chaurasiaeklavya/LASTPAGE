@@ -2,6 +2,7 @@ import { pages } from "@/content/site";
 import { Page } from "@/components/layout/Page";
 import { Footer } from "@/components/layout/Footer";
 import { Reveals } from "@/components/motion/Reveals";
+import { Sheets } from "@/components/motion/Sheets";
 import { Cover } from "@/components/sections/Cover";
 import { Gap } from "@/components/sections/Gap";
 import { Idea } from "@/components/sections/Idea";
@@ -40,6 +41,7 @@ export default function Home() {
       </main>
       <Footer />
       <Reveals />
+      <Sheets />
     </>
   );
 }

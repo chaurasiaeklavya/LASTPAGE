@@ -6,10 +6,19 @@
   isolation: isolate;
 }
 
+/* Sheets: overlap the previous page; corners flatten via --flat (0 → 1). */
+.page[data-sheet] {
+  --r: clamp(20px, 2.8vw, 44px);
+  --flat: 0;
+  margin-top: calc(var(--r) * -1);
+  border-radius: calc(var(--r) * (1 - var(--flat))) calc(var(--r) * (1 - var(--flat))) 0 0;
+  box-shadow: 0 -24px 60px -30px rgba(0, 0, 0, 0.55);
+}
+
 .head {
   position: relative;
   z-index: 2;
-  padding-top: clamp(76px, 9vh, 104px);
+  padding-top: calc(clamp(76px, 9vh, 104px) + var(--r, 0px));
 }
 .headInner {
   display: grid;

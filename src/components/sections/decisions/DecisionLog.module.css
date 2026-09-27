@@ -506,7 +506,7 @@
   position: relative;
   font-family: var(--f-display);
   font-weight: 700;
-  font-size: 3cqw;
+  font-size: 2.3cqw;
   text-transform: uppercase;
   color: var(--ink);
   transform: rotate(-10deg);
@@ -800,7 +800,7 @@
     top: -8%;
   }
   .approved span {
-    font-size: 4cqw;
+    font-size: 3cqw;
   }
   .brief {
     width: 100%;

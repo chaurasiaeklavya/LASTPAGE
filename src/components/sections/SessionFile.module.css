@@ -5,7 +5,7 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--gutter);
-  padding-top: clamp(56px, 10vh, 130px);
+  padding-top: clamp(40px, 7vh, 96px);
   align-items: start;
 }
 .text {

@@ -2,7 +2,7 @@
   padding-bottom: var(--section-y);
 }
 .inner {
-  padding-top: clamp(56px, 10vh, 130px);
+  padding-top: clamp(40px, 7vh, 96px);
 }
 .top {
   display: grid;

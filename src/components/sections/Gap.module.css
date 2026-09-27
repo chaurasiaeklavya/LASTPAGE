@@ -13,7 +13,7 @@
   z-index: -1;
 }
 .inner {
-  padding-top: clamp(48px, 9vh, 120px);
+  padding-top: clamp(40px, 7vh, 96px);
 }
 .title {
   font-size: var(--t-xxl);

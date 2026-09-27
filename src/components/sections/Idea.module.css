@@ -32,7 +32,7 @@
 .inner {
   position: relative;
   z-index: 1;
-  padding-top: clamp(56px, 10vh, 140px);
+  padding-top: clamp(40px, 7vh, 96px);
 }
 .title {
   font-size: var(--t-xxl);
