@@ -1,0 +1,36 @@
+.page {
+  padding-bottom: var(--section-y);
+}
+.inner {
+  padding-top: clamp(56px, 10vh, 130px);
+}
+.header {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  align-items: end;
+}
+.title {
+  grid-column: 1 / span 7;
+  font-size: var(--t-xxl);
+}
+.aside {
+  grid-column: 9 / -1;
+  display: grid;
+  gap: var(--s-4);
+  justify-items: start;
+  color: var(--fg-muted);
+  padding-bottom: 0.6em;
+}
+@media (max-width: 900px) {
+  .header {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .title,
+  .aside {
+    grid-column: 1 / -1;
+  }
+  .title {
+    font-size: clamp(2.8rem, 15vw, 7rem);
+  }
+}

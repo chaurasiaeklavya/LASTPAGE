@@ -1,0 +1,41 @@
+.main {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  background: var(--ink);
+  overflow: clip;
+}
+.inner {
+  display: grid;
+  gap: var(--s-6);
+  justify-items: start;
+  padding-block: 140px 80px;
+}
+.inner > .label {
+  color: var(--lime);
+}
+.title {
+  display: grid;
+  font-size: var(--t-xl);
+  max-width: 12ch;
+}
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.dice {
+  position: absolute;
+  right: 6vw;
+  bottom: 0;
+  width: clamp(120px, 16vw, 260px);
+  height: auto;
+  pointer-events: none;
+}
+@media (max-width: 700px) {
+  .dice {
+    opacity: 0.35;
+    right: -6vw;
+  }
+}

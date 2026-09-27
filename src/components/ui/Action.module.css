@@ -1,0 +1,152 @@
+.action {
+  --a-bg: var(--lime);
+  --a-fg: var(--ink);
+  --a-fill: var(--white);
+  --a-fill-fg: var(--ink);
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 0 22px 0 24px;
+  border-radius: var(--r-pill);
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--a-fg);
+  background: var(--a-bg);
+  overflow: hidden;
+  transition:
+    color var(--d-ui) var(--ease-out),
+    transform var(--d-ui) var(--ease-out),
+    box-shadow var(--d-ui) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.l {
+  min-height: 60px;
+  padding: 0 28px 0 32px;
+  font-size: 1.125rem;
+}
+
+/* Hover: a fill rises from the baseline — like ink filling a counter. */
+.action::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--a-fill);
+  border-radius: inherit;
+  transform: translateY(101%);
+  transition: transform 520ms var(--ease-out);
+}
+@media (hover: hover) {
+  .action:hover::before {
+    transform: none;
+  }
+  .action:hover {
+    color: var(--a-fill-fg);
+  }
+  .action:hover .glyphA {
+    transform: translate(140%, 0);
+  }
+  .action:hover .icon-external .glyphA {
+    transform: translate(140%, -140%);
+  }
+  .action:hover .icon-down .glyphA {
+    transform: translate(0, 140%);
+  }
+  .action:hover .glyphB {
+    transform: none;
+  }
+}
+.action:active {
+  transform: scale(0.97);
+}
+
+.label {
+  position: relative;
+}
+.icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+}
+.glyphA,
+.glyphB {
+  grid-area: 1 / 1;
+  transition: transform 460ms var(--ease-out);
+}
+.glyphB {
+  transform: translate(-140%, 0);
+}
+.icon-external .glyphB {
+  transform: translate(-140%, 140%);
+}
+.icon-down .glyphB {
+  transform: translate(0, -140%);
+}
+
+/* Variants ----------------------------------------------------------------- */
+.primary {
+  --a-bg: var(--lime);
+  --a-fg: var(--ink);
+  --a-fill: var(--white);
+  --a-fill-fg: var(--ink);
+}
+.ghost {
+  --a-bg: transparent;
+  --a-fg: var(--fg, var(--white));
+  --a-fill: var(--fg, var(--white));
+  --a-fill-fg: var(--bg, var(--ink));
+  box-shadow: inset 0 0 0 1.5px currentColor;
+}
+@media (hover: hover) {
+  .ghost:hover {
+    box-shadow: inset 0 0 0 1.5px var(--a-fill);
+  }
+}
+.ink {
+  --a-bg: var(--ink);
+  --a-fg: var(--white);
+  --a-fill: var(--violet);
+  --a-fill-fg: var(--white);
+}
+.violet {
+  --a-bg: var(--violet);
+  --a-fg: var(--white);
+  --a-fill: var(--ink);
+  --a-fill-fg: var(--lime);
+}
+.text {
+  --a-bg: transparent;
+  --a-fg: currentColor;
+  padding: 0;
+  min-height: 44px;
+  border-radius: 0;
+  gap: 10px;
+  overflow: visible;
+}
+.text::before {
+  inset: auto 0 8px 0;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0.28);
+  transform-origin: left;
+  border-radius: 0;
+  z-index: 0;
+}
+@media (hover: hover) {
+  .text:hover {
+    color: inherit;
+  }
+  .text:hover::before {
+    transform: scaleX(1);
+  }
+}

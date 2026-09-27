@@ -1,0 +1,23 @@
+.mark {
+  font-family: var(--f-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.v1 {
+  display: inline-block;
+}
+.v2 {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 0.84;
+  letter-spacing: -0.05em;
+}
+.violet {
+  color: var(--violet);
+}
+.lime {
+  color: var(--lime);
+}

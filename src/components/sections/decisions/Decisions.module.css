@@ -1,0 +1,149 @@
+.page {
+  padding-bottom: var(--section-y);
+}
+.intro {
+  padding-top: clamp(56px, 10vh, 130px);
+  padding-bottom: clamp(56px, 9vh, 120px);
+}
+.title {
+  font-size: var(--t-xl);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  align-items: end;
+  margin-top: clamp(32px, 6vh, 72px);
+}
+.lede {
+  grid-column: 1 / span 6;
+  max-width: 30ch;
+  color: var(--fg-muted);
+}
+.dice {
+  grid-column: 9 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: end;
+  gap: var(--s-4);
+}
+.dice img {
+  width: 100%;
+  height: auto;
+}
+.dice figcaption {
+  display: grid;
+  gap: 8px;
+  padding-bottom: 18px;
+}
+.dice q {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  quotes: "“" "”";
+}
+.dice span {
+  font-family: var(--f-ui);
+  font-size: var(--t-label);
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+}
+
+.formats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+  margin-top: var(--s-8);
+}
+.format {
+  --c-bg: var(--violet);
+  --c-fg: var(--white);
+  --c-muted: var(--violet-tint);
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: var(--s-4);
+  min-height: 260px;
+  padding: var(--s-6);
+  padding-top: calc(var(--s-6) + 10px);
+  border-radius: var(--r-m);
+  background: var(--c-bg);
+  color: var(--c-fg);
+  transition: transform 600ms var(--ease-out);
+}
+.format[data-variant="lime"] {
+  --c-bg: var(--lime);
+  --c-fg: var(--ink);
+  --c-muted: rgba(29, 29, 29, 0.78);
+}
+@media (hover: hover) {
+  .format:hover {
+    transform: translateY(-6px) rotate(-0.6deg);
+  }
+}
+/* Folder tab — the kit's folder element, drawn as a tab on each card. */
+.tab {
+  position: absolute;
+  top: -12px;
+  left: var(--s-6);
+  padding: 4px 12px;
+  border-radius: 8px 8px 8px 8px;
+  background: var(--c-bg);
+  color: var(--c-fg);
+  font-family: var(--f-ui);
+  font-weight: 700;
+  font-size: var(--t-label);
+  letter-spacing: var(--tracking-label);
+  box-shadow: 0 0 0 3px var(--bg);
+}
+.formatTitle {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.qs {
+  display: grid;
+  gap: 10px;
+  margin-top: auto;
+}
+.qs li {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--c-muted);
+}
+.qs li::before {
+  content: "“";
+  margin-right: 2px;
+}
+.qs li::after {
+  content: "”";
+}
+
+@media (max-width: 900px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lede,
+  .dice {
+    grid-column: 1 / -1;
+  }
+  .dice {
+    grid-template-columns: 40% minmax(0, 1fr);
+    margin-top: var(--s-5);
+  }
+  .formats {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-6);
+  }
+  .format {
+    min-height: 0;
+  }
+}

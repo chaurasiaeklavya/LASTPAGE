@@ -1,0 +1,39 @@
+.cursor {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  will-change: transform;
+}
+.cursor[data-enabled="true"] {
+  display: block;
+}
+.pill {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: var(--r-pill);
+  background: var(--lime);
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+  transform: scale(0.4);
+  transform-origin: 0 0;
+  opacity: 0;
+  transition:
+    transform 380ms var(--ease-spring),
+    opacity 200ms var(--ease-out);
+}
+.cursor[data-active="true"] .pill {
+  transform: none;
+  opacity: 1;
+}

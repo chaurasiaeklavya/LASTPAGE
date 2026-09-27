@@ -1,0 +1,238 @@
+/* All sizes in cqw of the nearest [container-type: inline-size] ancestor. */
+.cover {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1.2cqw;
+}
+
+/* ---- A: the generic straw man ----------------------------------------- */
+.a {
+  background: #f3f3f6;
+  display: grid;
+  grid-template-rows: 55% 1fr;
+}
+.aPhoto {
+  position: relative;
+  background: linear-gradient(135deg, #cfd3dc, #aab1bf);
+}
+.aPhoto span {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top right, transparent calc(50% - 1px), rgba(255, 255, 255, 0.7) 50%, transparent calc(50% + 1px)),
+    linear-gradient(to top left, transparent calc(50% - 1px), rgba(255, 255, 255, 0.7) 50%, transparent calc(50% + 1px));
+}
+.aCopy {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 1.2cqw;
+  text-align: center;
+  color: #2b2d42;
+  font-family: system-ui, sans-serif;
+}
+.aHead {
+  font-size: 3.6cqw;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.aSub {
+  font-size: 1.7cqw;
+  color: #6b6f80;
+}
+.aBtn {
+  padding: 1cqw 3cqw;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #7b5cff, #ff5ca8);
+  color: #fff;
+  font-size: 1.6cqw;
+  font-weight: 600;
+}
+
+/* ---- B: type alone ------------------------------------------------------ */
+.b {
+  background: #0a0a0a;
+  display: grid;
+  place-items: center;
+}
+.bType {
+  font-family: var(--f-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--white);
+  font-size: 9.4cqw;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+.bType span {
+  color: var(--white);
+}
+
+/* ---- C / v1 / v2: type + object --------------------------------------- */
+.c {
+  background: #0a0a0a;
+}
+.glow {
+  position: absolute;
+  inset: -10% 40% 10% -20%;
+  background: radial-gradient(closest-side, rgba(82, 0, 255, 0.55), transparent);
+}
+.cDesk {
+  position: absolute;
+  right: -3%;
+  top: 14%;
+  width: 64%;
+}
+.cDesk img {
+  width: 100%;
+  height: auto;
+  mix-blend-mode: lighten;
+}
+.cCaret {
+  position: absolute;
+  left: calc(47.9% + 2.4%);
+  top: calc(33.4% + 4.2%);
+  width: 1.4%;
+  height: 3.6%;
+  background: var(--lime);
+  box-shadow: 0 0 1cqw rgba(208, 255, 0, 0.8);
+}
+.c[data-animate="true"] .cCaret {
+  animation: miniBlink 1.06s steps(1) infinite;
+}
+@keyframes miniBlink {
+  50% {
+    opacity: 0;
+  }
+}
+.cType {
+  position: absolute;
+  left: 5%;
+  top: 12%;
+  display: grid;
+  font-family: var(--f-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--lime);
+  font-size: 11.6cqw;
+  line-height: 0.84;
+  letter-spacing: -0.055em;
+}
+.cType i {
+  font-style: normal;
+  color: var(--violet);
+}
+.flat .cDesk {
+  right: 18%;
+  top: 18%;
+  width: 60%;
+}
+.cTypeFlat {
+  position: absolute;
+  left: 5%;
+  top: 8%;
+  font-family: var(--f-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--lime);
+  font-size: 4.2cqw;
+  letter-spacing: -0.03em;
+}
+.cBar {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 2.4%;
+}
+.cLead {
+  width: 26%;
+  height: 1.2cqw;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.55);
+}
+.cBtn {
+  width: 16%;
+  height: 3.6cqw;
+  border-radius: 99px;
+  background: var(--lime);
+}
+
+/* ---- Wireframe sketches ------------------------------------------------ */
+.sketch {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 1.5px dashed rgba(29, 29, 29, 0.45);
+  border-radius: 1.2cqw;
+  background: #fbfbf7;
+  padding: 7%;
+  display: grid;
+  gap: 5%;
+}
+.sketch span {
+  display: block;
+  border: 1.5px solid rgba(29, 29, 29, 0.55);
+  border-radius: 3px;
+}
+.sA {
+  grid-template-rows: 1fr auto auto auto;
+  justify-items: center;
+}
+.sPhoto {
+  width: 100%;
+  background:
+    linear-gradient(to top right, transparent calc(50% - 1px), rgba(29, 29, 29, 0.4) 50%, transparent calc(50% + 1px)),
+    linear-gradient(to top left, transparent calc(50% - 1px), rgba(29, 29, 29, 0.4) 50%, transparent calc(50% + 1px));
+}
+.sLineW {
+  width: 70%;
+  height: 0;
+}
+.sLineS {
+  width: 44%;
+  height: 0;
+}
+.sPill {
+  width: 26%;
+  height: 12px;
+  border-radius: 99px !important;
+}
+.sB {
+  align-content: center;
+}
+.sBig {
+  height: 26%;
+  min-height: 18px;
+  background: rgba(29, 29, 29, 0.08);
+}
+.sC {
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+}
+.sStack {
+  border: 0 !important;
+  display: grid !important;
+  gap: 8%;
+}
+.sStack span {
+  height: 18px;
+  background: rgba(208, 255, 0, 0.6);
+}
+.sStack span:nth-child(2) {
+  width: 80%;
+}
+.sObject {
+  aspect-ratio: 1;
+  border-radius: 10px !important;
+  position: relative;
+  background:
+    linear-gradient(rgba(29, 29, 29, 0.55), rgba(29, 29, 29, 0.55)) center 78% / 70% 1.5px no-repeat,
+    radial-gradient(circle at 50% 38%, rgba(82, 0, 255, 0.25) 0 28%, transparent 29%);
+}

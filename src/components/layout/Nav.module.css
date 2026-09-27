@@ -1,0 +1,411 @@
+.bar {
+  --nav-fg: var(--white);
+  --nav-bg: rgba(18, 18, 18, 0.72);
+  --nav-line: rgba(255, 255, 255, 0.12);
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-nav);
+  padding-top: env(safe-area-inset-top);
+  color: var(--nav-fg);
+  transition:
+    transform 560ms var(--ease-out),
+    color var(--d-ui) var(--ease-out);
+}
+.bar[data-tone="light"] {
+  --nav-fg: var(--ink);
+  --nav-bg: rgba(255, 255, 255, 0.72);
+  --nav-line: rgba(29, 29, 29, 0.12);
+}
+.bar[data-page-theme="lime"] {
+  --nav-bg: rgba(208, 255, 0, 0.8);
+}
+.bar[data-page-theme="violet"] {
+  --nav-bg: rgba(82, 0, 255, 0.72);
+  --nav-line: rgba(255, 255, 255, 0.2);
+}
+.bar[data-hidden="true"] {
+  transform: translateY(-110%);
+}
+
+/* Glass appears only once content scrolls beneath the bar. */
+.bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom: 1px solid var(--nav-line);
+  opacity: 0;
+  transition:
+    opacity var(--d-ui) var(--ease-out),
+    background var(--d-ui) var(--ease-out);
+}
+.bar[data-scrolled="true"]::before {
+  opacity: 1;
+}
+
+.inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--s-4);
+  height: 64px;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+
+.brand {
+  justify-self: start;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 12px 0;
+}
+.dot {
+  display: inline-block;
+  color: var(--lime);
+  transition:
+    transform 500ms var(--ease-spring),
+    color var(--d-ui);
+}
+.bar[data-tone="light"] .dot {
+  color: var(--violet);
+}
+@media (hover: hover) {
+  .brand:hover .dot {
+    transform: translateY(-3px) scale(1.4);
+  }
+}
+
+.folio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--f-ui);
+  font-size: var(--t-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.folioNum {
+  font-weight: 600;
+}
+.folioRule {
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+.folioLabel {
+  opacity: 0.75;
+}
+
+.actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.join {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: var(--r-pill);
+  background: var(--lime);
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  transition:
+    background var(--d-ui) var(--ease-out),
+    color var(--d-ui) var(--ease-out);
+}
+.bar[data-page-theme="lime"] .join {
+  background: var(--ink);
+  color: var(--lime);
+}
+@media (hover: hover) {
+  .join:hover {
+    background: var(--white);
+    color: var(--ink);
+  }
+}
+
+.menuBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 6px 0 14px;
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: var(--r-pill);
+}
+.menuIcon {
+  display: grid;
+  gap: 5px;
+  width: 22px;
+}
+.menuIcon span {
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 400ms var(--ease-out);
+}
+.menuIcon span:last-child {
+  width: 60%;
+  justify-self: end;
+}
+@media (hover: hover) {
+  .menuBtn:hover .menuIcon span:last-child {
+    transform: scaleX(1.66);
+    transform-origin: right;
+  }
+}
+
+@media (max-width: 860px) {
+  .inner {
+    grid-template-columns: 1fr auto;
+    height: 58px;
+  }
+  .folio {
+    display: none;
+  }
+  .brand {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 420px) {
+  .menuLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  .menuBtn {
+    padding: 0 10px;
+    width: 44px;
+    justify-content: center;
+  }
+  .join {
+    padding: 0 14px;
+  }
+}
+
+/* ---- Contents dialog ---------------------------------------------------- */
+.dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--white);
+  overflow: hidden;
+}
+.dialog::backdrop {
+  background: rgba(10, 10, 10, 0.4);
+  opacity: 0;
+  transition: opacity 400ms var(--ease-out);
+}
+.dialog[data-open="true"]::backdrop {
+  opacity: 1;
+}
+
+.sheet {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: var(--ink-deep);
+  padding: calc(env(safe-area-inset-top) + 14px) var(--margin) calc(env(safe-area-inset-bottom) + 20px);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 620ms var(--ease-out);
+  overflow-y: auto;
+}
+.dialog[data-open="true"] .sheet {
+  clip-path: inset(0 0 0 0);
+}
+
+.sheetTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 44px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 10px;
+  box-sizing: content-box;
+}
+.close {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 44px;
+  padding-left: 12px;
+  font-family: var(--f-display);
+  font-weight: 600;
+}
+.closeIcon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+.closeIcon::before,
+.closeIcon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1.5px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+.closeIcon::after {
+  transform: rotate(-45deg);
+}
+
+.sheetBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: var(--s-8);
+  align-items: center;
+  padding-block: var(--s-6);
+}
+
+.toc {
+  counter-reset: none;
+}
+.toc li {
+  border-bottom: 1px solid var(--line);
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 500ms var(--ease-out),
+    transform 700ms var(--ease-out);
+  transition-delay: calc(var(--i) * 28ms + 120ms);
+}
+.dialog[data-open="true"] .toc li {
+  opacity: 1;
+  transform: none;
+}
+.toc a {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-5);
+  padding: clamp(6px, 1.1vh, 12px) 0;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4.2vh, 3.1rem);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition:
+    color var(--d-micro),
+    padding var(--d-ui) var(--ease-out);
+}
+.tocNum {
+  font-family: var(--f-ui);
+  font-weight: 500;
+  font-size: var(--t-label);
+  letter-spacing: var(--tracking-label);
+  color: var(--text-faint);
+  min-width: 2.2em;
+  transform: translateY(-0.6em);
+}
+.toc a[aria-current="location"] .tocNum {
+  color: var(--lime);
+}
+@media (hover: hover) {
+  .toc a:hover {
+    color: var(--lime);
+    padding-left: 12px;
+  }
+}
+.toc a:focus-visible {
+  color: var(--lime);
+}
+
+.preview {
+  aspect-ratio: 3 / 4;
+  max-height: 62vh;
+  justify-self: end;
+  width: min(100%, 420px);
+  border-radius: var(--r-m);
+  background: var(--bg);
+  color: var(--fg);
+  padding: var(--s-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-print);
+  transition:
+    background 400ms var(--ease-out),
+    color 400ms var(--ease-out);
+  outline: 1px solid var(--line);
+}
+.previewNum {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(6rem, 16vw, 14rem);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+}
+.previewLabel {
+  font-family: var(--f-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: var(--t-m);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.sheetFoot {
+  display: flex;
+  gap: var(--s-6);
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+.footLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  font-family: var(--f-display);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+@media (hover: hover) {
+  .footLink:hover {
+    color: var(--lime);
+  }
+}
+
+@media (max-width: 860px) {
+  .sheetBody {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .preview {
+    display: none;
+  }
+  .toc a {
+    font-size: clamp(1.5rem, 6.4vw, 2.4rem);
+    padding: 10px 0;
+  }
+}

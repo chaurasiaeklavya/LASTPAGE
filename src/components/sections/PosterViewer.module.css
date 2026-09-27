@@ -1,0 +1,103 @@
+.stage {
+  perspective: 1200px;
+}
+.print {
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow-print);
+  transform-style: preserve-3d;
+  transform: rotate(-2.4deg);
+  transition: box-shadow var(--d-ui) var(--ease-out);
+  --sx: 50%;
+  --sy: 20%;
+}
+@media (hover: hover) {
+  .print:hover {
+    box-shadow:
+      0 60px 100px -40px rgba(0, 0, 0, 0.8),
+      0 0 0 1px rgba(208, 255, 0, 0.4);
+  }
+}
+.img {
+  width: 100%;
+  height: auto;
+}
+.sheen {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(40% 30% at var(--sx) var(--sy), rgba(255, 255, 255, 0.28), transparent 70%);
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--d-ui);
+}
+@media (hover: hover) {
+  .print:hover .sheen {
+    opacity: 1;
+  }
+}
+.caption {
+  margin-top: 16px;
+  font-family: var(--f-ui);
+  font-size: var(--t-label);
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+}
+.caption span {
+  color: var(--text-faint);
+}
+@media (hover: hover) {
+  .caption span {
+    display: none;
+  }
+}
+
+.dialog {
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: min(92vw, 720px);
+  max-height: 94dvh;
+  overflow: visible;
+}
+.dialog::backdrop {
+  background: rgba(10, 10, 10, 0.86);
+  backdrop-filter: blur(6px);
+}
+.frame {
+  border-radius: 14px;
+  overflow: hidden;
+  max-height: calc(94dvh - 64px);
+  overflow-y: auto;
+}
+.full {
+  width: 100%;
+  height: auto;
+}
+.closeWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+.close {
+  height: 44px;
+  padding: 0 22px;
+  border-radius: var(--r-pill);
+  background: var(--lime);
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-weight: 600;
+}
+.dialog[data-open="true"] .frame {
+  animation: zoomIn 520ms var(--ease-out);
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(12px);
+  }
+}

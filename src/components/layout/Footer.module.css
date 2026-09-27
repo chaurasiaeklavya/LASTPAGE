@@ -1,0 +1,107 @@
+.footer {
+  position: relative;
+  background: var(--ink-deep);
+  color: var(--white);
+  overflow: clip;
+}
+.inner {
+  padding-top: clamp(64px, 10vh, 120px);
+  padding-bottom: calc(env(safe-area-inset-bottom) + 24px);
+}
+.cols {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--gutter);
+}
+.tag {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: var(--t-m);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  max-width: 18ch;
+}
+.origin {
+  margin-top: 14px;
+  color: var(--text-muted);
+}
+.links {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+.links .label {
+  color: var(--text-faint);
+}
+.links ul {
+  display: grid;
+  gap: 4px;
+}
+.links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 1.0625rem;
+  transition: color var(--d-micro);
+}
+@media (hover: hover) {
+  .links a:hover {
+    color: var(--lime);
+  }
+}
+
+/* The signature: the wordmark, edge to edge. */
+.mark {
+  margin-top: clamp(48px, 9vh, 120px);
+  font-family: var(--f-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12.4vw;
+  line-height: 0.8;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+  color: var(--lime);
+  margin-left: -0.05em;
+}
+.mark span {
+  color: var(--violet);
+}
+
+.base {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-5);
+  flex-wrap: wrap;
+  margin-top: var(--s-6);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line);
+  font-size: var(--t-small);
+  color: var(--text-faint);
+}
+.top {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+}
+@media (hover: hover) {
+  .top:hover {
+    color: var(--lime);
+  }
+}
+
+@media (max-width: 800px) {
+  .cols {
+    grid-template-columns: 1fr 1fr;
+  }
+  .about {
+    grid-column: 1 / -1;
+    margin-bottom: var(--s-5);
+  }
+  .mark {
+    font-size: 13vw;
+  }
+}

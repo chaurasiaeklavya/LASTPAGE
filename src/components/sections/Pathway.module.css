@@ -1,0 +1,306 @@
+.page {
+  padding-bottom: var(--section-y);
+}
+.inner {
+  padding-top: clamp(56px, 10vh, 130px);
+}
+.header {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  align-items: end;
+}
+.title {
+  grid-column: 1 / span 8;
+  font-size: var(--t-xl);
+}
+.intro {
+  grid-column: 9 / -1;
+  color: var(--fg-muted);
+  padding-bottom: 0.4em;
+}
+
+/* ---- Timeline ------------------------------------------------------------ */
+.track {
+  --line-y: 58px;
+  position: relative;
+  margin-top: clamp(64px, 10vh, 130px);
+}
+/* The rail: dashed where the road isn't built yet, solid progress on top. */
+.track::before,
+.track::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--line-y);
+  height: 2px;
+}
+.track::before {
+  background: repeating-linear-gradient(to right, var(--line-strong) 0 8px, transparent 8px 16px);
+}
+.track::after {
+  background: var(--lime);
+  transform-origin: left;
+  transform: scaleX(var(--progress));
+  box-shadow: 0 0 16px rgba(208, 255, 0, 0.6);
+}
+
+.zones {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 1.3fr;
+  gap: 0;
+}
+.zone {
+  display: grid;
+  grid-template-rows: 44px auto;
+  row-gap: 0;
+  border-left: 1px solid var(--rule);
+  padding-left: var(--s-4);
+}
+.zoneHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--f-ui);
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+.zoneName {
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+.zone[data-status="now"] .zoneName {
+  background: var(--lime);
+  color: var(--ink);
+  box-shadow: none;
+}
+.zone[data-status="later"] .zoneName,
+.zone[data-status="goal"] .zoneName {
+  color: var(--text-faint);
+}
+.here {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--lime);
+  font-weight: 600;
+}
+.here::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--lime);
+  animation: here 1.8s var(--ease-out) infinite;
+}
+@keyframes here {
+  0% {
+    box-shadow: 0 0 0 0 rgba(208, 255, 0, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(208, 255, 0, 0);
+  }
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-4);
+}
+.step {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding-top: 36px;
+  padding-right: var(--s-4);
+}
+.node {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: inset 0 0 0 2px var(--line-strong);
+}
+.zone[data-status="now"] .node {
+  background: var(--lime);
+  box-shadow: 0 0 0 5px rgba(208, 255, 0, 0.18);
+}
+.zone[data-status="next"] .node {
+  box-shadow: inset 0 0 0 2px var(--white);
+}
+.stepNum {
+  font-family: var(--f-ui);
+  font-size: var(--t-label);
+  letter-spacing: var(--tracking-label);
+  color: var(--text-faint);
+}
+.verb {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1.35rem, 1.85vw, 2.1rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+.zone[data-status="later"] .verb {
+  color: rgba(255, 255, 255, 0.62);
+}
+.offering {
+  font-size: 1rem;
+  color: var(--fg-muted);
+}
+.zone[data-status="now"] .offering {
+  color: var(--lime);
+}
+.destination .verb {
+  color: var(--lime);
+}
+.goalBurst {
+  position: absolute;
+  top: -22px;
+  left: -21px;
+  width: 58px;
+  height: 58px;
+}
+.destination .node {
+  display: none;
+}
+
+.rule {
+  margin-top: clamp(40px, 6vh, 72px);
+  font-size: var(--t-small);
+  color: var(--fg-muted);
+}
+
+/* ---- Signals ------------------------------------------------------------- */
+.signals {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  margin-top: clamp(64px, 10vh, 130px);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--rule);
+}
+.signalsTitle {
+  grid-column: 1 / span 4;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: var(--t-m);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+.signalsTitle span {
+  font-family: var(--f-ui);
+  font-weight: 500;
+  font-size: var(--t-label);
+  letter-spacing: var(--tracking-label);
+  color: var(--text-faint);
+}
+.signalList {
+  grid-column: 5 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gutter);
+}
+.signalList li {
+  display: grid;
+  gap: 8px;
+  padding: var(--s-5);
+  border-radius: var(--r-m);
+  background: var(--ink-raised);
+}
+.signalList li:nth-child(1),
+.signalList li:nth-child(4) {
+  background: var(--violet);
+}
+.q {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 1.375rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.measure {
+  color: var(--fg-muted);
+}
+.signalList li:nth-child(1) .measure,
+.signalList li:nth-child(4) .measure {
+  color: var(--violet-tint);
+}
+
+@media (max-width: 1100px) {
+  .header,
+  .signals {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .title,
+  .intro,
+  .signalsTitle,
+  .signalList {
+    grid-column: 1 / -1;
+  }
+  .track {
+    --line-x: 6px;
+  }
+  .track::before,
+  .track::after {
+    top: 0;
+    bottom: 0;
+    left: var(--line-x);
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+  .track::before {
+    background: repeating-linear-gradient(to bottom, var(--line-strong) 0 8px, transparent 8px 16px);
+  }
+  .track::after {
+    transform-origin: top;
+    transform: scaleY(var(--progress));
+  }
+  .zones {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-7);
+  }
+  .zone {
+    border-left: 0;
+    padding-left: 34px;
+    grid-template-rows: auto auto;
+    row-gap: var(--s-4);
+  }
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-5);
+  }
+  .step {
+    padding-top: 0;
+  }
+  .node {
+    left: -34px;
+    top: 6px;
+  }
+  .goalBurst {
+    position: static;
+    width: 56px;
+    height: 56px;
+    margin-left: -2px;
+  }
+}
+@media (max-width: 560px) {
+  .signalList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

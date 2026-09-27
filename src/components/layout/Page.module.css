@@ -1,0 +1,75 @@
+.page {
+  position: relative;
+  overflow-x: clip; /* decorative bleeds never widen the page */
+  background: var(--bg);
+  color: var(--fg);
+  isolation: isolate;
+}
+
+.head {
+  position: relative;
+  z-index: 2;
+  padding-top: clamp(76px, 9vh, 104px);
+}
+.headInner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--s-4);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--f-ui);
+  font-size: var(--t-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  background-clip: content-box;
+}
+/* The rule should run the container width, not the padding. */
+.headInner {
+  border-bottom: 0;
+  background-image: linear-gradient(var(--rule), var(--rule));
+  background-size: calc(100% - 2 * var(--margin)) 1px;
+  background-position: var(--margin) 100%;
+  background-repeat: no-repeat;
+  background-clip: border-box;
+}
+.pub {
+  justify-self: start;
+  font-family: var(--f-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: 0.8125rem;
+}
+.dot {
+  color: var(--accent);
+}
+.section {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+.num {
+  font-weight: 700;
+}
+.rule {
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+.folio {
+  justify-self: end;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+@media (max-width: 720px) {
+  .headInner {
+    grid-template-columns: 1fr auto;
+  }
+  .pub {
+    display: none;
+  }
+}
